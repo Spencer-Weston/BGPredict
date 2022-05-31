@@ -8,6 +8,7 @@ authors = ["spencer <spencerweston3214@gmail.com>"]
 python = ">=3.10.0, <3.11"
 pandas = ">=1.4"
 dropbox = "^11.30"
+boto3 = ">=1.23"
 
 
 [tool.poetry.dev-dependencies]
