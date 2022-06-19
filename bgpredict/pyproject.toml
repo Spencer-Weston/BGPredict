@@ -9,7 +9,7 @@ python = ">=3.10.0, <3.11"
 pandas = ">=1.4"
 dropbox = "^11.30"
 boto3 = ">=1.23"
-
+sortedcontainers = ">=2.4"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2"
