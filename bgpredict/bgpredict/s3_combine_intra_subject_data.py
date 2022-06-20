@@ -96,11 +96,14 @@ class JoinManager(S3Connection):
             else:
                 print(f"Creating join data for {subject_id}")
                 joined_data = subject.get_join_table()
-                joined_data_text = joined_data.to_csv(index=False)
+                if joined_data is None:
+                    print(f"{subject_id} did not return a joined dataframe. No data will be written.")
+                else:
+                    joined_data_text = joined_data.to_csv(index=False)
 
-                print(f"Putting join data for {subject_id}")
-                self.s3_client.put_object(Bucket=self.bucket_name, Key=s3_location, Body=joined_data_text)
-                print(f"{subject_id} finished in {datetime.now() - iteration_start}")
+                    print(f"Putting join data for {subject_id}")
+                    self.s3_client.put_object(Bucket=self.bucket_name, Key=s3_location, Body=joined_data_text)
+                    print(f"{subject_id} finished in {datetime.now() - iteration_start}")
             del subject
         print(f"Full run finished in {datetime.now() - full_run_start}")
 
@@ -213,7 +216,12 @@ class Subject:
             return self.join_table
 
     def _temporal_join(self):
-
+        if len(self.entries_files) == 0:
+            print(f"No entries for subject {self.subject_id}. Returning None")
+            return None
+        elif len(self.device_status_files) == 0 and len(self.treatment_files) == 0:
+            print(f"{self.subject_id} does not have device status or treatment files. Returning None")
+            return None
         # Load tables and convert relevant columns to date times
         entry_df = self.get_entries_df()
         treatments_df = self.get_treatment_df()
