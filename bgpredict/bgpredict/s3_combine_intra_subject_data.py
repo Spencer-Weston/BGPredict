@@ -84,20 +84,33 @@ class JoinManager(S3Connection):
         versioned_folder = f"{folder}{version}/"
         full_run_start = datetime.now()
         # use while loop + pop(0) to allow deletion of all data associated with a subject each iteration to minimize
-        # memory usage 
+        # memory usage
         while len(self.subject_classes) > 0:
             iteration_start = datetime.now()
             subject = self.subject_classes.pop(0)
             subject_id = subject.subject_id
-            print(f"Creating join data for {subject_id}")
-            joined_data = subject.get_join_table()
-            joined_data_text = joined_data.to_csv(index=False)
             s3_location = f"{versioned_folder}{subject_id}_joined_csv"
-            print(f"Putting join data for {subject_id}")
-            self.s3_client.put_object(Bucket=self.bucket_name, Key=s3_location, Body=joined_data_text)
-            print(f"{subject_id} finished in {datetime.now() - iteration_start}")
+            if self.key_exists(s3_location):
+                print(f"{s3_location} already exists. Skipping")
+            else:
+                print(f"Creating join data for {subject_id}")
+                joined_data = subject.get_join_table()
+                joined_data_text = joined_data.to_csv(index=False)
+
+                print(f"Putting join data for {subject_id}")
+                self.s3_client.put_object(Bucket=self.bucket_name, Key=s3_location, Body=joined_data_text)
+                print(f"{subject_id} finished in {datetime.now() - iteration_start}")
             del subject
         print(f"Full run finished in {datetime.now() - full_run_start}")
+
+
+    def key_exists(self, key):
+        response = self.s3_client.list_objects_v2(Bucket=self.bucket_name, Prefix=key)
+        if response and "Contents" in response.keys():
+            for obj in response['Contents']:
+                if key == obj['Key']:
+                    return True
+        return False
 
 class Subject:
     """Subject's functions will read, union, and temporally join subject data."""
