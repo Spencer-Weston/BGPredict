@@ -194,8 +194,13 @@ class Subject:
             self.entries_df.columns = ["time", "bg"]
             try:
                 self.entries_df['timestamp'] = pd.to_datetime(self.entries_df['time'])
-            except ParserError:
-                # Exception applies to (at least) subject 22961398
+            except Exception:
+                # For whatever reason, "except ParserError" does not catch the parser error which is why we have the
+                # overly broad Exception
+
+                # The alternative string replacement in this block applies to and fixes (at least) subject 22961398's
+                # pd.to_datetime() convsersion
+                print(f"Using string replacement on subject {self.subject_id}")
                 self.entries_df['timestamp'] = pd.to_datetime(self.entries_df['time'].str.replace("PM", ""))
             self.entries_df['entryid'] = [i for i in range(len(self.entries_df))]
             return self.entries_df
