@@ -8,6 +8,7 @@ from datetime import datetime
 import pytz
 from sortedcontainers import SortedDict
 import pandas as pd
+from pandas.errors import ParserError
 
 class S3Connection:
     def __init__(self):
@@ -191,7 +192,11 @@ class Subject:
                            self.entries_files]
             self.entries_df = pd.concat(entries_dfs, axis=0)
             self.entries_df.columns = ["time", "bg"]
-            self.entries_df['timestamp'] = pd.to_datetime(self.entries_df['time'])
+            try:
+                self.entries_df['timestamp'] = pd.to_datetime(self.entries_df['time'])
+            except ParserError:
+                # Exception applies to (at least) subject 22961398
+                self.entries_df['timestamp'] = pd.to_datetime(self.entries_df['time'].str.replace("PM", ""))
             self.entries_df['entryid'] = [i for i in range(len(self.entries_df))]
             return self.entries_df
 
