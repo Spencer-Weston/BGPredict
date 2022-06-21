@@ -201,8 +201,12 @@ class Subject:
                 self.entries_df['timestamp'] = pd.to_datetime(self.entries_df['time'])
             except Exception:
                 print("HERE IN THE ERROR")
-                self.entries_df['timestamp'] = pd.to_datetime(self.entries_df['time'].str.replace("PM", ""))
+                try:
+                    self.entries_df['timestamp'] = pd.to_datetime(self.entries_df['time'].str.replace("PM", ""))
             #                 self.entries_df['timestamp'] = pd.to_datetime(self.entries_df['time'])
+                except Exception:
+                    self.entries_df['timestamp'] = pd.to_datetime(self.entries_df['time'].str.replace("vorm.", ""))
+                    
             self.entries_df['entryid'] = [i for i in range(len(self.entries_df))]
             return self.entries_df
 
