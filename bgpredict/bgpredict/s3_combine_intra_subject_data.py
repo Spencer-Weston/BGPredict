@@ -234,17 +234,27 @@ class Subject:
                                                     treatments=treatments_df)
         join_df = self._create_temporal_join_df(index_dict)
 
-        joined_data = (join_df
-                       .merge(entry_df, how='left', left_on='entryid', right_on='entryid', suffixes=("_x", "_ent"))
-                       .merge(device_status_df, how='left', left_on="devicestatusid", right_on="devicestatusid",
-                              suffixes=("_y", "_ds"))
-                       .merge(treatments_df, how='left', left_on="treatmentid", right_on="treatmentid",
-                              suffixes=("_z", "_tre"))
-                       )
+        if device_status_df is not None and treatments_df is not None:
+            joined_data = (join_df
+                           .merge(entry_df, how='left', left_on ='entryid', right_on='entryid', suffixes=("_x","_ent"))
+                           .merge(device_status_df, how='left', left_on="devicestatusid", right_on="devicestatusid", suffixes=("_y","_ds"))
+                           .merge(treatments_df, how='left', left_on="treatmentid", right_on="treatmentid", suffixes=("_z","_tre"))
+                          )
+        elif device_status_df is None and treatments_df is not None:
+            joined_data = (join_df
+               .merge(entry_df, how='left', left_on ='entryid', right_on='entryid', suffixes=("_x","_ent"))
+               .merge(treatments_df, how='left', left_on="treatmentid", right_on="treatmentid", suffixes=("_z","_tre"))
+              )
+        elif device_status_df is not None and treatments_df is None:
+            joined_data = (join_df
+               .merge(entry_df, how='left', left_on ='entryid', right_on='entryid', suffixes=("_x","_ent"))
+               .merge(device_status_df, how='left', left_on="devicestatusid", right_on="devicestatusid", suffixes=("_y","_ds"))
+              )
+
         return joined_data
 
     def _temporal_join_index_dict(self, entries, device_status, treatments):
-        """Assign devicestatus and treatment rows to nearest entry after the device status or treatment row."""
+        """Assign device status and treatment rows to the nearest entry that occurs after the device status or treatment row."""
         # Store timestamp and entries in zipped list; get entry timezones
         timestamp_keys = entries['timestamp'].to_list()
         timestamp_keys = [x.replace(tzinfo=pytz.utc) for x in timestamp_keys if
@@ -259,51 +269,59 @@ class Subject:
             {timestamp: (entry_id, {"device_status": [], "treatment": []}) for timestamp, entry_id in zipped})
 
         # Generate list of tuples for (devicetimestamp, deviceid)
-        device_tuples = list(zip(device_status['timestamp'], device_status['devicestatusid']))
+        if device_status is not None:
+            device_tuples = list(zip(device_status['timestamp'], device_status['devicestatusid']))
+        else:
+            device_tuples = None
 
         # Generate list of tuples for (devicetimestamp, deviceid)
-        treatments_tuples = list(zip(treatments['timestamp'], treatments['treatmentid']))
+        if treatments is not None:
+            treatments_tuples = list(zip(treatments['timestamp'], treatments['treatmentid']))
+        else:
+            treatments_tuples = None
 
         # Set constants from index_dict
         index_keys = index_dict.keys()
         max_idx = index_dict.index(index_keys[len(index_keys) - 1])
 
-        for comparison_timestamp, comparison_id in device_tuples:
-            # Left idx is the index of the entry timestamp the comparison timestamp is less than or equal to
-            try:
-                left_idx = index_dict.bisect_left(comparison_timestamp)
-            except TypeError:
-                left_idx = index_dict.bisect_left(comparison_timestamp.replace(tzinfo=pytz.utc))
+        if device_tuples is not None:
+            for comparison_timestamp, comparison_id in device_tuples:
+                # Left idx is the index of the entry timestamp the comparison timestamp is less than or equal to
+                try:
+                    left_idx = index_dict.bisect_left(comparison_timestamp)
+                except TypeError:
+                    left_idx = index_dict.bisect_left(comparison_timestamp.replace(tzinfo=pytz.utc))
 
-            # Assign comparison timestamps greater than the last entry to the last entry
-            # (Comparisons < min(entry timestamp) will naturally be joined to min(entry timestamp))
-            if left_idx >= max_idx:
-                left_idx = max_idx
+                # Assign comparison timestamps greater than the last entry to the last entry
+                # (Comparisons < min(entry timestamp) will naturally be joined to min(entry timestamp))
+                if left_idx >= max_idx:
+                    left_idx = max_idx
 
-            # Get the index_dict key associated with the bisect_left operation
-            assignment_key = index_keys[left_idx]
+                # Get the index_dict key associated with the bisect_left operation
+                assignment_key = index_keys[left_idx]
 
-            # Assign the comparison_id to the assignment key of the index_dict
-            index_dict[assignment_key][1]['device_status'].append(comparison_id)
+                # Assign the comparison_id to the assignment key of the index_dict
+                index_dict[assignment_key][1]['device_status'].append(comparison_id)
 
-        # Equivalent to the above for-loop but for treatments_tuples
-        for comparison_timestamp, comparison_id in treatments_tuples:
-            # Left idx is the index of the entry timestamp the comparison timestamp is less than or equal to
-            try:
-                left_idx = index_dict.bisect_left(comparison_timestamp)
-            except TypeError:
-                left_idx = index_dict.bisect_left(comparison_timestamp.replace(tzinfo=pytz.utc))
+        if treatments_tuples is not None:
+            # Equivalent to the above for-loop but for treatments_tuples
+            for comparison_timestamp, comparison_id in treatments_tuples:
+                # Left idx is the index of the entry timestamp the comparison timestamp is less than or equal to
+                try:
+                    left_idx = index_dict.bisect_left(comparison_timestamp)
+                except TypeError:
+                    left_idx = index_dict.bisect_left(comparison_timestamp.replace(tzinfo=pytz.utc))
 
-            # Assign comparison timestamps greater than the last entry to the last entry
-            # (Comparisons < min(entry timestamp) will naturally be joined to min(entry timestamp))
-            if left_idx >= max_idx:
-                left_idx = max_idx
+                # Assign comparison timestamps greater than the last entry to the last entry
+                # (Comparisons < min(entry timestamp) will naturally be joined to min(entry timestamp))
+                if left_idx >= max_idx:
+                    left_idx = max_idx
 
-            # Get the index_dict key associated with the bisect_left operation
-            assignment_key = index_keys[left_idx]
+                # Get the index_dict key associated with the bisect_left operation
+                assignment_key = index_keys[left_idx]
 
-            # Assign the comparison_id to the assignment key of the index_dict
-            index_dict[assignment_key][1]['treatment'].append(comparison_id)
+                # Assign the comparison_id to the assignment key of the index_dict
+                index_dict[assignment_key][1]['treatment'].append(comparison_id)
 
         return index_dict
 
