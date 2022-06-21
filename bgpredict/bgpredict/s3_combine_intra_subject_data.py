@@ -116,8 +116,8 @@ class JoinManager(S3Connection):
                     return True
         return False
 
+
 class Subject:
-    """Subject's functions will read, union, and temporally join subject data."""
 
     def __init__(self, subject_id, subject_path, treatment_files, device_status_files, entries_files):
         self.subject_id = subject_id
@@ -145,6 +145,8 @@ class Subject:
             return self.device_status_shapes
 
     def get_device_status_df(self):
+        if len(self.device_status_files) == 0:
+            return None
         if self.device_status_df is not None:
             return self.device_status_df
         else:
@@ -198,18 +200,14 @@ class Subject:
             try:
                 self.entries_df['timestamp'] = pd.to_datetime(self.entries_df['time'])
             except Exception:
-                # For whatever reason, "except ParserError" does not catch the parser error which is why we have the
-                # overly broad Exception
-
-                # The alternative string replacement in this block applies to and fixes (at least) subject 22961398's
-                # pd.to_datetime() convsersion
-                print(f"Using string replacement on subject {self.subject_id}")
+                print("HERE IN THE ERROR")
                 self.entries_df['timestamp'] = pd.to_datetime(self.entries_df['time'].str.replace("PM", ""))
+            #                 self.entries_df['timestamp'] = pd.to_datetime(self.entries_df['time'])
             self.entries_df['entryid'] = [i for i in range(len(self.entries_df))]
             return self.entries_df
 
     def get_join_table(self):
-        if self.join_table:
+        if self.join_table is not None:
             return self.join_table
         else:
             self.join_table = self._temporal_join()
@@ -222,6 +220,7 @@ class Subject:
         elif len(self.device_status_files) == 0 and len(self.treatment_files) == 0:
             print(f"{self.subject_id} does not have device status or treatment files. Returning None")
             return None
+
         # Load tables and convert relevant columns to date times
         entry_df = self.get_entries_df()
         treatments_df = self.get_treatment_df()
@@ -236,21 +235,24 @@ class Subject:
 
         if device_status_df is not None and treatments_df is not None:
             joined_data = (join_df
-                           .merge(entry_df, how='left', left_on ='entryid', right_on='entryid', suffixes=("_x","_ent"))
-                           .merge(device_status_df, how='left', left_on="devicestatusid", right_on="devicestatusid", suffixes=("_y","_ds"))
-                           .merge(treatments_df, how='left', left_on="treatmentid", right_on="treatmentid", suffixes=("_z","_tre"))
-                          )
+                           .merge(entry_df, how='left', left_on='entryid', right_on='entryid', suffixes=("_x", "_ent"))
+                           .merge(device_status_df, how='left', left_on="devicestatusid", right_on="devicestatusid",
+                                  suffixes=("_y", "_ds"))
+                           .merge(treatments_df, how='left', left_on="treatmentid", right_on="treatmentid",
+                                  suffixes=("_z", "_tre"))
+                           )
         elif device_status_df is None and treatments_df is not None:
             joined_data = (join_df
-               .merge(entry_df, how='left', left_on ='entryid', right_on='entryid', suffixes=("_x","_ent"))
-               .merge(treatments_df, how='left', left_on="treatmentid", right_on="treatmentid", suffixes=("_z","_tre"))
-              )
+                           .merge(entry_df, how='left', left_on='entryid', right_on='entryid', suffixes=("_x", "_ent"))
+                           .merge(treatments_df, how='left', left_on="treatmentid", right_on="treatmentid",
+                                  suffixes=("_z", "_tre"))
+                           )
         elif device_status_df is not None and treatments_df is None:
             joined_data = (join_df
-               .merge(entry_df, how='left', left_on ='entryid', right_on='entryid', suffixes=("_x","_ent"))
-               .merge(device_status_df, how='left', left_on="devicestatusid", right_on="devicestatusid", suffixes=("_y","_ds"))
-              )
-
+                           .merge(entry_df, how='left', left_on='entryid', right_on='entryid', suffixes=("_x", "_ent"))
+                           .merge(device_status_df, how='left', left_on="devicestatusid", right_on="devicestatusid",
+                                  suffixes=("_y", "_ds"))
+                           )
         return joined_data
 
     def _temporal_join_index_dict(self, entries, device_status, treatments):
