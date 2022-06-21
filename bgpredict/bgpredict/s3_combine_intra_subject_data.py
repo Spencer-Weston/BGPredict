@@ -8,7 +8,7 @@ from datetime import datetime
 import pytz
 from sortedcontainers import SortedDict
 import pandas as pd
-from pandas.errors import ParserError
+from pandas.errors import ParserError, OutOfBoundsDatetime
 
 class S3Connection:
     def __init__(self):
@@ -200,13 +200,18 @@ class Subject:
             try:
                 self.entries_df['timestamp'] = pd.to_datetime(self.entries_df['time'])
             except Exception:
-                print("HERE IN THE ERROR")
+                print("Receive error in datetime conversion. Attempting string replacement")
 
                 self.entries_df['time'] = self.entries_df['time'].str.replace("PM", "")
                 self.entries_df['time'] = self.entries_df['time'].str.replace("vorm.", "")
                 self.entries_df['time'] = self.entries_df['time'].str.replace("nachm.", "")
-                self.entries_df['timestamp'] = pd.to_datetime(self.entries_df['time'])
-
+                try:
+                    self.entries_df['timestamp'] = pd.to_datetime(self.entries_df['time'])
+                except OutOfBoundsDatetime:
+                    print("Identified out of bounds error. Dropping null timestamp rows")
+                    self.entries_df['timestamp'] = pd.to_datetime(self.entries_df['time'], errors='coerce')
+                    nulls = self.entries_df['timestamp'].loc[self.entries_df['timestamp'].isna(), ]
+                    self.entries_df = self.entries_df.loc[~self.entries_df['timestamp'].isin(nulls)]
 
             self.entries_df['entryid'] = [i for i in range(len(self.entries_df))]
             return self.entries_df
