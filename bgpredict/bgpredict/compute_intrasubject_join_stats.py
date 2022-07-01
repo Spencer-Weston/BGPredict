@@ -84,11 +84,11 @@ class StatCalculator(S3Connection):
                         column_stats[col].append(col_info)
                     else:
                         column_stats.update({col: [col_info]})
-            # clean up variables
-            del tbl
-            del desc
-            del non_numeric_desc
-            del column
+                # clean up variables
+                del tbl
+                del desc
+                del non_numeric_desc
+                del column
 
             print("\n", f"Finished subject: {subjectid} in {datetime.now() - start}", '\n')
 
