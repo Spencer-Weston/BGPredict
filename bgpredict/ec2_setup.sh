@@ -6,7 +6,7 @@
 curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
 
 # Add poetry to path
-source $HOME/.poetry/env
+export $HOME/.poetry/env
 
 # Ensure repository is up to date with remote
 git pull
