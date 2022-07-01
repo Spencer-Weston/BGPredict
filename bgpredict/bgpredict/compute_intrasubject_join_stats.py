@@ -34,14 +34,14 @@ class StatCalculator(S3Connection):
         column_stats = {}
         i = 0
         for path in self.table_pathes:
-            tbl = pd.read_csv(path)
-
             split = path.split('/')
             file_name = split[len(split)-1]
             subjectid = file_name.split('_')[0]
 
             start = datetime.now()
             print("\n", f"Calculating Stats for subject: {subjectid}", "\n")
+
+            tbl = pd.read_csv(path)
 
             desc = tbl.describe()
             value_rows = ['count', 'mean', 'std']
