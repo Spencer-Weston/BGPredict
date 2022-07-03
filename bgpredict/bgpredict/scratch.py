@@ -47,9 +47,7 @@ class ColumnCounter(S3Connection):
                     vals = [0 for _ in range(len(self.table_pathes))]
                     vals[idx] = 1
                     all_cols.update({c: vals})
-            i += 1
-            if i == 2:
-                break
+
         df = pd.DataFrame(all_cols, index=subject_ids)
         df.to_csv(f"{self.write_directory}/column_by_subject.csv")
 
