@@ -28,6 +28,7 @@ class ColumnCounter(S3Connection):
             subjectid = file_name.split('_')[0]
             subject_ids.append(subjectid)
         all_cols = {}
+        i = 0
         for path in self.table_pathes:
             split = path.split('/')
             file_name = split[len(split)-1]
@@ -46,7 +47,10 @@ class ColumnCounter(S3Connection):
                     vals = [0 for _ in range(len(self.table_pathes))]
                     vals[idx] = 1
                     all_cols.update({c: vals})
-        df = pd.DataFrame(all_cols)
+            i += 1
+            if i == 2:
+                break
+        df = pd.DataFrame(all_cols, index=subject_ids)
         df.to_csv(f"{self.write_directory}/column_by_subject.csv")
 
 if __name__ == "__main__":
