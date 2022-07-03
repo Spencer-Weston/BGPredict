@@ -46,4 +46,10 @@ class ColumnCounter(S3Connection):
                     vals = [0 for _ in range(len(self.table_pathes))]
                     vals[idx] = 1
                     all_cols.update({c: vals})
-        df.to_csv("../../misc/column_by_subject.csv")
+        df = pd.DataFrame(all_cols)
+        df.to_csv(f"{self.write_directory}/column_by_subject.csv")
+
+if __name__ == "__main__":
+    head_directory = "intrasubject_joinv0.2/"
+    counter = ColumnCounter(head_directory, write_directory="../../misc")
+    counter.make_column_table()
