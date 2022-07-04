@@ -100,7 +100,7 @@ class SubjectCompressor:
     def select_timestamp(x):
         x = x.loc[~x.isna()]
         if len(x) == 0:
-            raise Exception
+            return None
         else:
             return x.iloc[0]
 
