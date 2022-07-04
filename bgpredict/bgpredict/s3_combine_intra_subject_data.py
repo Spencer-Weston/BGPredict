@@ -221,7 +221,7 @@ class Subject:
                     print("Identified out of bounds error. Dropping null timestamp rows")
                     self.entries_df['timestamp'] = pd.to_datetime(self.entries_df['time'], errors='coerce')
                     nulls = self.entries_df['timestamp'].loc[self.entries_df['timestamp'].isna(), ]
-                    self.entries_df = self.entries_df.loc[~self.entries_df['timestamp'].isin(nulls)]
+                    self.entries_df = self.entries_df.loc[~self.entries_df['timestamp'].isin(nulls), b]
 
             self.entries_df['entryid'] = [i for i in range(len(self.entries_df))]
             return self.entries_df

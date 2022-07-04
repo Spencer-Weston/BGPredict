@@ -19,9 +19,9 @@ class StatCalculator(S3Connection):
         self.write_directory = write_directory
         self.table_pathes = []
         self.column_stats = None
-        self.identify_files()
+        self._identify_files()
 
-    def identify_files(self):
+    def _identify_files(self):
         subject_file_locs = self.s3_client.list_objects_v2(Bucket=self.bucket_name, Prefix=self.head_directory)
 
         for x in subject_file_locs['Contents']:
@@ -101,5 +101,4 @@ class StatCalculator(S3Connection):
 if __name__ == "__main__":
     head_directory = "intrasubject_joinv0.2/"
     calc = StatCalculator(head_directory, write_directory="../../misc")
-    calc.identify_files()
     calc.compute_statistics()
