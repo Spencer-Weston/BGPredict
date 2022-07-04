@@ -10,7 +10,7 @@ class CompressionManager(S3Connection):
         self.source_directory = source_directory
         self.target_directory = f"{target_directory}{version}/"
         self.version = version
-        self.source_files = None
+        self.source_files = []
         self._identify_files()
 
     def _identify_files(self):
@@ -152,7 +152,7 @@ if __name__ == "__main__":
     # subj = SubjectCompressor(path)
     # subj.compress()
     source_directory = "intrasubject_joinv0.2/"
-    target_directory = "intrasubject_data/"
+    target_directory = "intrasubject_data"
     version = "V0.1"
     manager = CompressionManager(source_directory=source_directory, target_directory=target_directory, version=version)
     manager.perform_compression()
