@@ -18,7 +18,15 @@ class S3Connection:
         self.s3_client = boto3.client("s3")
 
 class JoinManager(S3Connection):
+    """Manages the join of intra-subject files and PUT files in s3 bucket.
 
+    Will join these tables:
+        Entries - blood glucose entries
+        Treatments - various treatment data
+        Device Status - various other treatment data
+
+    Composed of the Subject class which
+     """
     def __init__(self, head_directory=None):
         super().__init__()
         self.head_directory = head_directory
@@ -60,7 +68,7 @@ class JoinManager(S3Connection):
             # ToDo: List folders within each subject; identify device status, treatments, and entry
             subj_folders = self.bucket.meta.client.list_objects_v2(Bucket=self.bucket_name, Delimiter="/",
                                                                    Prefix=path).get('CommonPrefixes')
-            # Some subjects don't
+
             if subj_folders is not None:
                 for folder in subj_folders:
                     folder_path = folder['Prefix']
@@ -199,9 +207,11 @@ class Subject:
             self.entries_df.columns = ["time", "bg"]
             try:
                 self.entries_df['timestamp'] = pd.to_datetime(self.entries_df['time'])
-            except Exception:
-                print("Receive error in datetime conversion. Attempting string replacement")
+            except Exception as e:
 
+                print("Receive error in datetime conversion. Attempting string replacement")
+                # Experiments showed that PM wasn't a part of strings that would otherwise be "AM"
+                # e.g. the time 21:17:21 would have PM despite the >12 hour indicating 9 PM
                 self.entries_df['time'] = self.entries_df['time'].str.replace("PM", "")
                 self.entries_df['time'] = self.entries_df['time'].str.replace("vorm.", "")
                 self.entries_df['time'] = self.entries_df['time'].str.replace("nachm.", "")
@@ -211,7 +221,7 @@ class Subject:
                     print("Identified out of bounds error. Dropping null timestamp rows")
                     self.entries_df['timestamp'] = pd.to_datetime(self.entries_df['time'], errors='coerce')
                     nulls = self.entries_df['timestamp'].loc[self.entries_df['timestamp'].isna(), ]
-                    self.entries_df = self.entries_df.loc[~self.entries_df['timestamp'].isin(nulls)]
+                    self.entries_df = self.entries_df.loc[~self.entries_df['timestamp'].isin(nulls), b]
 
             self.entries_df['entryid'] = [i for i in range(len(self.entries_df))]
             return self.entries_df
@@ -263,6 +273,7 @@ class Subject:
                            .merge(device_status_df, how='left', left_on="devicestatusid", right_on="devicestatusid",
                                   suffixes=("_y", "_ds"))
                            )
+        joined_data['subjectid'] = pd.Series(self.subject_id for _ in range(len(joined_data)))
         return joined_data
 
     def _temporal_join_index_dict(self, entries, device_status, treatments):
@@ -394,4 +405,4 @@ if __name__ == "__main__":
     ids = conn.identify_subject_ids()
     conn.generate_subject_info()
     conn.generate_subject_classes()
-    conn.intra_subject_join_and_put(folder="intrasubject_join", version="0.1")
+    conn.intra_subject_join_and_put(folder="intrasubject_join", version="v0.2")
