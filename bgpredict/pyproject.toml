@@ -5,7 +5,7 @@ description = ""
 authors = ["spencer <spencerweston3214@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = ">=3.10.0, <3.11"
+python = ">=3.10,<4"
 aiobotocore = ">=2.1.0,<2.2.0"
 botocore = ">=1.23.24,<1.23.25"
 pandas = ">=1.4"
@@ -13,12 +13,19 @@ dropbox = "^11.30"
 boto3 = ">=1.2"
 s3fs = ">=2022.01.0"
 sortedcontainers = ">=2.4"
-
+psycopg2 = ">=2.9.3, <3.0.0"
+torch = [
+  {url = "https://download.pytorch.org/whl/nightly/cpu/torch-1.12.0.dev20220409%2Bcpu-cp310-cp310-linux_x86_64.whl", "platform" = "linux"},
+  {url = "https://download.pytorch.org/whl/nightly/cpu/torch-1.12.0.dev20220409%2Bcpu-cp310-cp310-win_amd64.whl", "platform" = "win32"},
+  {url = "https://download.pytorch.org/whl/nightly/cpu/torch-1.12.0.dev20220409-cp310-none-macosx_10_9_x86_64.whl", "platform" = "darwin" , markers = "platform_machine == 'x86_64'" },
+  {url = "https://download.pytorch.org/whl/nightly/cpu/torch-1.12.0.dev20220409-cp310-none-macosx_11_0_arm64.whl", "platform" = "darwin" , markers = "platform_machine == 'arm64'" }
+]
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2"
 jupyter = "^1.0.0"
 matplotlib = "^3.5.2"
+sqlalchemy ="^1.4.39b"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
