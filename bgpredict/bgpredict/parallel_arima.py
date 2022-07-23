@@ -59,7 +59,7 @@ def arima(subject_id):
     s3_folder = f"models/arima/{subject_id}"
     if s3_conn.key_exists(f"{s3_folder}/results"):
         print(f"Model for subject {subject_id} already exists. Skipping")
-        return
+        return True
     print(f"Loading {subject_id} data")
     raw_df = load_data_by_subject(subject_id)
     clean_df = clean_data(raw_df)
@@ -90,6 +90,7 @@ def arima(subject_id):
     s3_conn.s3_client.put_object(Bucket=bucket, Key=f"{s3_folder}/model", Body=pickled_model)
     s3_conn.s3_client.put_object(Bucket=bucket, Key=f"{s3_folder}/results", Body=result_text)
     print(f"Finished training {subject_id} in {datetime.now() - start}")
+    return True
 
 
 if __name__ == "__main__":
@@ -99,8 +100,11 @@ if __name__ == "__main__":
     location = f"postgresql://postgres:{os.environ.get('db_password')}@{os.environ.get('db_location')}"
     engine = create_engine(location)
     with engine.connect() as conn:
-        subjects = pd.read_sql(f"select DISTINCT(subjectid) from public.vw_final_dataset ", conn)
+        subjects = pd.read_sql(f"select DISTINCT(subjectid) from public.main_table ", conn)
     subjects = list(subjects['subjectid'])
 
     with concurrent.futures.ProcessPoolExecutor() as executor:
+        print("In parallel Executor")
         pool = executor.map(arima, subjects[:2])
+        for res in pool:
+            print("Response:", res)
