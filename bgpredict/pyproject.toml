@@ -26,6 +26,7 @@ ray = [
 ]
 scipy = "^1.8.1"
 pmdarima = "^1.8.5"
+python-dotenv = "^0.20.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2"
