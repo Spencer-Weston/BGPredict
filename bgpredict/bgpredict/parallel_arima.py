@@ -62,6 +62,9 @@ def arima(subject_id):
         return True
     print(f"Loading {subject_id} data")
     raw_df = load_data_by_subject(subject_id)
+    if raw_df.empty:
+        print(f"Dataset for subject {subject_id} is empty. Skipping")
+        return True
     clean_df = clean_data(raw_df)
 
     train_df = clean_df.loc[(clean_df['train_set'] == 1) | (clean_df['validation_set'] == 1), :]
@@ -105,6 +108,6 @@ if __name__ == "__main__":
 
     with concurrent.futures.ProcessPoolExecutor() as executor:
         print("In parallel Executor")
-        pool = executor.map(arima, subjects[:2])
+        pool = executor.map(arima, subjects)
         for res in pool:
             print("Response:", res)
