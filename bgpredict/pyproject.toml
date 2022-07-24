@@ -5,7 +5,7 @@ description = ""
 authors = ["spencer <spencerweston3214@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = ">=3.10,<4"
+python = ">=3.10,<3.11"
 aiobotocore = ">=2.1.0,<2.2.0"
 botocore = ">=1.23.24,<1.23.25"
 pandas = ">=1.4"
@@ -20,7 +20,13 @@ torch = [
   {url = "https://download.pytorch.org/whl/nightly/cpu/torch-1.12.0.dev20220409-cp310-none-macosx_10_9_x86_64.whl", "platform" = "darwin",  markers = "platform_machine == 'x86_64'" },
   {url = "https://download.pytorch.org/whl/nightly/cpu/torch-1.12.0.dev20220409-cp310-none-macosx_11_0_arm64.whl", "platform" = "darwin",  markers = "platform_machine == 'arm64'" }
 ]
-ray = {url = "https://s3-us-west-2.amazonaws.com/ray-wheels/latest/ray-3.0.0.dev0-cp310-cp310-win_amd64.whl"}
+ray = [
+  {url = "https://s3-us-west-2.amazonaws.com/ray-wheels/latest/ray-3.0.0.dev0-cp310-cp310-win_amd64.whl", "platform" = "win32"},
+  {url = "https://s3-us-west-2.amazonaws.com/ray-wheels/latest/ray-3.0.0.dev0-cp310-cp310-manylinux2014_x86_64.whl", "platform" = "linux"}
+]
+scipy = "^1.8.1"
+pmdarima = "^1.8.5"
+python-dotenv = "^0.20.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2"

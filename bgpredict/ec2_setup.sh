@@ -10,6 +10,6 @@ curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poet
 
 # Add poetry to path
 export PATH="$HOME/.poetry/env"
-
+source PATH
 # Install/update bgpredict environment
 poetry update
