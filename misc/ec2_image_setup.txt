@@ -2,12 +2,12 @@
 2. install various packages (including ssl)
 - sudo yum update -y
 - sudo yum groupinstall "Development Tools" -y
-- sudo yum install openssl11 openssl11-devel  libffi-devel bzip2-devel wget libsqlite3-dev git postgresql-devel -y
+- sudo yum install openssl11 openssl11-devel libbz2-dev libexpat1-dev zlib1g-dev liblzma-dev libmpdec-dev libssl-dev libgdbm-dev libffi-devel bzip2-devel wget libsqlite3-dev libffi-dev libdb-dev libncursesw5-dev postgresql-devel libreadline6-dev -y
 3. Install python 3.10
 - wget https://www.python.org/ftp/python/3.10.5/Python-3.10.5.tgz
 - tar -xf Python-3.10.5.tgz
 - cd Python-3.10.5/
-- ./configure --enable-optimizations
+- ./configure --enable-optimizations --enable-loadable-sqlite-extensions
 - make -j $(nproc)
 - sudo make altinstall
 - /usr/local/bin/python3.10 -m pip install --upgrade pip
@@ -24,4 +24,4 @@
 8. Configure AWS CLI (necessary to validate ec2 has access to resources)
 - aws configure
 
-libreadline6-dev libbz2-dev libssl-dev libsqlite3-dev libncursesw5-dev libffi-dev libdb-dev libexpat1-dev zlib1g-dev liblzma-dev libgdbm-dev libmpdec-dev
+         
