@@ -39,13 +39,13 @@
 <body>
 
 <!-- ======= Header ======= -->
-<header id="header" class="fixed-top d-flex align-items-center">
-    <div class="container d-flex align-items-center justify-content-between">
+<header id="header" class="fixed-top d-flex align-items-center" style="height: 100px">
+    <div class="container d-flex align-items-center justify-content-between" style="height: 100px;">
 
-        <div class="logo">
-            <h1><a href="index.html">BG-Predict</a></h1>
-            <!-- Uncomment below if you prefer to use an image logo -->
-            <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+        <div>
+            <a href=index.html>
+                <img src="assets/img/logo.png" style="margin: auto; height: 100px; width: fit-content" alt="">
+            </a>
         </div>
 
         <nav id="navbar" class="navbar">
@@ -54,9 +54,7 @@
                 <li><a class="nav-link scrollto" href="#diabetes">Type I Diabetes</a></li>
                 <li><a class="nav-link scrollto" href="#data">Dataset</a></li>
                 <li><a class="nav-link scrollto" href="#approach">Model Results</a></li>
-                <!--          <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>-->
                 <li><a class="nav-link scrollto" href="#team">Project Team</a></li>
-                <!--          <li><a class="nav-link scrollto" href="#pricing">Pricing</a></li>-->
                 <!--          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>-->
                 <!--            <ul>-->
                 <!--              <li><a href="#">Drop Down 1</a></li>-->
@@ -76,12 +74,11 @@
                 <!--          </li>-->
                 <li><a class="nav-link scrollto" href="#faq">FAQ</a></li>
                 <li><a class="nav-link scrollto" href="#resources">Resources</a></li>
-                <li><a class="nav-link" href="https://github.com/Spencer-Weston/BGPredict">Github</a> </li>
-                <!--          <li><a class="getstarted scrollto" href="#about">Get Started</a></li>-->
+                <li><a class="nav-link" href="https://github.com/Spencer-Weston/BGPredict">Github</a></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
-        </nav><!-- .navbar -->
-
+        </nav>
+        <!-- .navbar -->
     </div>
 </header><!-- End Header -->
 
@@ -107,10 +104,9 @@
         </div>
     </div>
 
-</section><!-- End Hero -->
-
+</section>
+<!-- End Hero -->
 <main id="main">
-
 
     <!-- ======= Diabetes Section ======= -->
     <section id="diabetes" class="about">
@@ -166,7 +162,8 @@
                 </div>
             </div>
         </div>
-    </section><!-- End About Us Section -->
+    </section>
+    <!-- End About Us Section -->
 
     <!-- ======= Data Section ======= -->
     <section id="data" class="about">
@@ -178,15 +175,23 @@
 
             <div class="row content">
                 <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-up" data-aos-delay="300">
-                  <h3>OpenAPS Dataset</h3>
-                  <p>
-                        <a href="https://openaps.readthedocs.io/en/latest/index.html">Open APS Data Commons</a> is an open source tool that is designed to gather data from continuous glucose monitoring (CGM) and insulin pump devices in an effort to analyze data automatically to give users vital information. For this dataset, users submitted data from NightScout CGM.
-                  </p>
+                    <h3>OpenAPS Dataset</h3>
                     <p>
-                        The dataset is as recent as August 2021 which contains 112 GB of data over a 5 year period prior to that month. Users information was voluntarily submitted to OpenAPS and made avaliable to our project team in order to develop our machine learning models. (see FAQ for Privacy Information)  </p>
+                        <a href="https://openaps.readthedocs.io/en/latest/index.html">Open APS Data Commons</a> is an
+                        open source tool that is designed to gather data from continuous glucose monitoring (CGM) and
+                        insulin pump devices in an effort to analyze data automatically to give users vital information.
+                        For this dataset, users submitted data from NightScout CGM.
+                    </p>
                     <p>
-                        The visual to the right shows all subjects from the OpenAPS dataset averaged over an hourly period to demonstrate the flow of blood glucose throughout a single day </p>
-                    <a href="https://openaps.readthedocs.io/en/latest/index.html" class="btn-learn-more">Learn more about OpenAPS Data
+                        The dataset is as recent as August 2021 which contains 112 GB of data over a 5 year period prior
+                        to that month. Users information was voluntarily submitted to OpenAPS and made avaliable to our
+                        project team in order to develop our machine learning models. (see FAQ for Privacy
+                        Information) </p>
+                    <p>
+                        The visual to the right shows all subjects from the OpenAPS dataset averaged over an hourly
+                        period to demonstrate the flow of blood glucose throughout a single day </p>
+                    <a href="https://openaps.readthedocs.io/en/latest/index.html" class="btn-learn-more">Learn more
+                        about OpenAPS Data
                         Commons</a>
                 </div>
                 <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-up" data-aos-delay="300">
@@ -218,7 +223,8 @@
                     vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px';
                     var scriptElement = document.createElement('script');
                     scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+                    vizElement.parentNode.insertBefore(scriptElement, vizElement);
+                    </script>
                 </div>
             </div>
             <br>
@@ -226,17 +232,23 @@
                 <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-up" data-aos-delay="300">
                     <h3 style="margin-top: 25px">NightScout CGM</h3>
                     <p>
-                       NightScout is an open source project that continuously collects blood glucose, as well as other data points. Via a transmitter and receiver device, NightScout is able to store this information and, with users permissions, load that data to a website that provides users an analytical summary of their blood glucose status. This information can be collected as frequently as every 5 minutes!
+                        NightScout is an open source project that continuously collects blood glucose, as well as other
+                        data points. Via a transmitter and receiver device, NightScout is able to store this information
+                        and, with users permissions, load that data to a website that provides users an analytical
+                        summary of their blood glucose status. This information can be collected as frequently as every
+                        5 minutes!
                     </p>
                     <p>
-                        The NightScout project is an amazing tool and the analytical services of platform are free! We recommend checking out their website below!
+                        The NightScout project is an amazing tool and the analytical services of platform are free! We
+                        recommend checking out their website below!
                     </p>
                     <a href="http://www.nightscout.info/" class="btn-learn-more">Learn more about NightScout Project</a>
                 </div>
                 <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-up" data-aos-delay="300">
                     <h3 style="margin-top: 25px">Features</h3>
                     <p>
-                        After data transformation, our project team narrowed data down to core features to inform our machine learning models:
+                        After data transformation, our project team narrowed data down to core features to inform our
+                        machine learning models:
                     </p>
                     <ul>
                         <li><i class="ri-arrow-right-fill"></i>Blood glucose (target variable)</li>
@@ -264,56 +276,17 @@
             <div class="container">
                 <div class="row content">
                     <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-up" data-aos-delay="300">
-                        <h3>Predicted AR</h3>
-                        <p>
-                            What
-                        </p>
-                        <p>
-                            Results/Conclusion
-                        </p>
-                    </div>
-                    <div class='col-lg-6 pt-4 pt-lg-0' data-aos="fade-up" data-aos-delay="300" id='viz1659172409454' style='position: relative'>
-                        <noscript><a href='#'><img alt='Predicted AR '
-                                                   src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;bg&#47;bg-predict&#47;Predict_AR&#47;1_rss.png'
-                                                   style='border: none'/></a></noscript>
-                        <object class='tableauViz' style='display:none;'>
-                            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F'/>
-                            <param name='embed_code_version' value='3'/>
-                            <param name='site_root' value=''/>
-                            <param name='name' value='bg-predict&#47;Predict_AR'/>
-                            <param name='tabs' value='no'/>
-                            <param name='toolbar' value='yes'/>
-                            <param name='static_image'
-                                   value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;bg&#47;bg-predict&#47;Predict_AR&#47;1.png'/>
-                            <param name='animate_transition' value='yes'/>
-                            <param name='display_static_image' value='yes'/>
-                            <param name='display_spinner' value='yes'/>
-                            <param name='display_overlay' value='yes'/>
-                            <param name='display_count' value='yes'/>
-                            <param name='language' value='en-US'/>
-                            <param name='filter' value='publish=yes'/>
-                        </object>
-                    </div>
-                    <script type='text/javascript'>                    var divElement = document.getElementById('viz1659172409454');
-                    var vizElement = divElement.getElementsByTagName('object')[0];
-                    vizElement.style.width = '100%';
-                    vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px';
-                    var scriptElement = document.createElement('script');
-                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
-                </div>
-                <br>
-                <div class="row content">
-                    <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-up" data-aos-delay="300">
                         <h3>Predicted ARIMAX</h3>
                         <p>
-                            What
+                            To establish baseline performance we are using a classical model known as ARIMAX. In this model, we use the last 12 examples of a single subjects reported blood glucose entries. The figure shown shows the predicted blood glucose values over the next 8 hours period. The data used for this model is from a randomly sampled subject.
                         </p>
+                        <h5> Results/Conclusion </h5>
                         <p>
-                            Results/Conclusion
+                            As you can see from the figure, the ARIMAX model follows the general trend of actual blood glucose values (shown as blue line), but is unable to accurately predict the blood glucose level. Without an accurate blood glucose value to make decisions on, diabetics would not be able to utilize, or even trust this type of model, thus we move on to more advanced models.
                         </p>
                     </div>
-                    <div class='col-lg-6 pt-4 pt-lg-0' data-aos="fade-up" data-aos-delay="300" id='viz1659173632821' style='position: relative'>
+                    <div class='col-lg-6 pt-4 pt-lg-0' data-aos="fade-up" data-aos-delay="300" id='viz1659173632821'
+                         style='position: relative'>
                         <noscript><a href='#'><img alt='Predicted ARIMAX '
                                                    src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;bg&#47;bg-predict&#47;Predict_ARIMAX&#47;1_rss.png'
                                                    style='border: none'/></a></noscript>
@@ -343,32 +316,94 @@
                     scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
                     vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
                 </div>
-              <br>
-              <div class="row content">
-                <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-up" data-aos-delay="300">
-                  <h3>Predicted LSTM</h3>
-                    <p>
-                        What
-                    </p>
-                    <p>
-                        Results/Conclusion
-                    </p>
+                <br>
+                <div class="row content">
+                    <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-up" data-aos-delay="300">
+                        <h3>Predicted Random Forest</h3>
+                        <p>
+                            Here we look at a model named Random Forest. This model takes more complex approach to prediction unlike the ARIMAX model we described above. The Random Forest model includes the last 12 blood glucose entries, as well as the last 12 insulin and carb entries for its prediction. The model, like ARIMAX, also attempts to predict blood glucose over the next 8 hour period. The data used for this model is from a randomly sampled subject.
+                        </p>
+                        <h5> Results/Conclusion </h5>
+                        <p>
+                            As shown in the figure (line shown in green), the Random Forest model follows the trend of actual blood glucose more closely than ARIMAX. It is safe to say that Random Forest is able to accurately predict blood glucose. While the model is accurate, there are points of which inaccurate spike occur but those are quickly corrected.
+                        </p>
+
+                    </div>
+                    <div class='col-lg-6 pt-4 pt-lg-0' data-aos="fade-up" data-aos-delay="300" id='viz1659175258179'
+                         style='position: relative'>
+                        <noscript><a href='#'><img alt='Predicted Random Forest '
+                                                   src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;bg&#47;bg-predict&#47;Predict_RandomForest&#47;1_rss.png'
+                                                   style='border: none'/></a></noscript>
+                        <object class='tableauViz' style='display:none;'>
+                            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F'/>
+                            <param name='embed_code_version' value='3'/>
+                            <param name='site_root' value=''/>
+                            <param name='name' value='bg-predict&#47;Predict_RandomForest'/>
+                            <param name='tabs' value='no'/>
+                            <param name='toolbar' value='yes'/>
+                            <param name='static_image'
+                                   value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;bg&#47;bg-predict&#47;Predict_RandomForest&#47;1.png'/>
+                            <param name='animate_transition' value='yes'/>
+                            <param name='display_static_image' value='yes'/>
+                            <param name='display_spinner' value='yes'/>
+                            <param name='display_overlay' value='yes'/>
+                            <param name='display_count' value='yes'/>
+                            <param name='language' value='en-US'/>
+                            <param name='filter' value='publish=yes'/>
+                        </object>
+                    </div>
+                    <script type='text/javascript'>                    var divElement = document.getElementById('viz1659175258179');
+                    var vizElement = divElement.getElementsByTagName('object')[0];
+                    vizElement.style.width = '100%';
+                    vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px';
+                    var scriptElement = document.createElement('script');
+                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
                 </div>
-                <div class='col-lg-6 pt-4 pt-lg-0' data-aos="fade-up" data-aos-delay="300" id='viz1659174693282' style='position: relative'><noscript><a href='#'><img alt='Predicted LSTM ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;bg&#47;bg-predict&#47;Predicted_LSTM&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='bg-predict&#47;Predicted_LSTM' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;bg&#47;bg-predict&#47;Predicted_LSTM&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1659174693282');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
-              </div>
-              <br>
-              <div class="row content">
-                <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-up" data-aos-delay="300">
-                  <h3>Predicted Random Forest</h3>
-                    <p>
-                        What
-                    </p>
-                    <p>
-                        Results/Conclusion
-                    </p>
+                <br>
+                <div class="row content">
+                    <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-up" data-aos-delay="300">
+                        <h3>Predicted LSTM</h3>
+                        <p>
+                            Similarly to the Random Forest model, our LSTM model using the last 12 blood glucose entries, as well as the last 12 insulin and carb entries to predict blood glucose levels. Like ARIMAX and Random Forest, this model attempts to predict blood glucose over the next 8 hour period. The data used for this model is from a randomly sampled subject.
+                        </p>
+                        <h5> Results/Conclusion </h5>
+                        <p>
+                            As you can see in the Predicted LSTM figure (line colored in red), the LSTM model follows the trend of actual blood glucose levels very well and is able to accurately predict blood glucose levels. One of the key differences between Random Forest and LSTM is its stability. As you can see in the figure, LSTM has less deviation, or spikes, from the actual blood glucose. But generally, Random Forest and LSTM are quite similar.
+                        </p>
+
+                    </div>
+                    <div class='col-lg-6 pt-4 pt-lg-0' data-aos="fade-up" data-aos-delay="300" id='viz1659174693282'
+                         style='position: relative'>
+                        <noscript><a href='#'><img alt='Predicted LSTM '
+                                                   src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;bg&#47;bg-predict&#47;Predicted_LSTM&#47;1_rss.png'
+                                                   style='border: none'/></a></noscript>
+                        <object class='tableauViz' style='display:none;'>
+                            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F'/>
+                            <param name='embed_code_version' value='3'/>
+                            <param name='site_root' value=''/>
+                            <param name='name' value='bg-predict&#47;Predicted_LSTM'/>
+                            <param name='tabs' value='no'/>
+                            <param name='toolbar' value='yes'/>
+                            <param name='static_image'
+                                   value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;bg&#47;bg-predict&#47;Predicted_LSTM&#47;1.png'/>
+                            <param name='animate_transition' value='yes'/>
+                            <param name='display_static_image' value='yes'/>
+                            <param name='display_spinner' value='yes'/>
+                            <param name='display_overlay' value='yes'/>
+                            <param name='display_count' value='yes'/>
+                            <param name='language' value='en-US'/>
+                            <param name='filter' value='publish=yes'/>
+                        </object>
+                    </div>
+                    <script type='text/javascript'>                    var divElement = document.getElementById('viz1659174693282');
+                    var vizElement = divElement.getElementsByTagName('object')[0];
+                    vizElement.style.width = '100%';
+                    vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px';
+                    var scriptElement = document.createElement('script');
+                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
                 </div>
-                <div class='col-lg-6 pt-4 pt-lg-0' data-aos="fade-up" data-aos-delay="300" id='viz1659175258179' style='position: relative'><noscript><a href='#'><img alt='Predicted Random Forest ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;bg&#47;bg-predict&#47;Predict_RandomForest&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='bg-predict&#47;Predict_RandomForest' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;bg&#47;bg-predict&#47;Predict_RandomForest&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1659175258179');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
-              </div>
             </div>
         </div>
     </section>
@@ -376,7 +411,13 @@
 
     <section id="all_models" class="about">
         <div class="container">
-
+            <div>
+                <h3>Models Conclusion</h3>
+                <p>
+                    In the figure labeled "All Model Results", you can see all of our individualized models in comparison to each other and the actual blood glucose levels. Random Forest and LSTM models provide the best results for accurately predicting blood glucose values. While this website provides a simplified overview of our models, we recommend taking a look at our <a href="">research paper</a> for more details into all of our project work!
+                </p>
+            </div>
+            <br>
             <div class='tableauPlaceholder' data-aos="fade-up" id='viz1658812387592'
                  style='position: absolute; margin: auto; width: 800px; height: 525px'>
                 <noscript><a href='#'><img alt='Models '
@@ -481,9 +522,111 @@
 
         </div>
     </section><!-- End Team Section -->
+    <!-- ======= Resources Section ======= -->
+    <section id="resources" class="features">
+        <div class="container">
+
+            <div class="section-title" data-aos="fade-up">
+                <h2>Resources</h2>
+                <!--                <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem</p>-->
+            </div>
+
+            <div class="row" data-aos="fade-up" data-aos-delay="300">
+                <!--                <div class="col-lg-3 col-md-4">-->
+                <!--                    <div class="icon-box">-->
+                <!--                        <i class="ri-store-line" style="color: #ffbb2c;"></i>-->
+                <!--                        <h3><a href="">Lorem Ipsum</a></h3>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--                <div class="col-lg-3 col-md-4 mt-4 mt-md-0">-->
+                <!--                    <div class="icon-box">-->
+                <!--                        <i class="ri-bar-chart-box-line" style="color: #5578ff;"></i>-->
+                <!--                        <h3><a href="">Dolor Sitema</a></h3>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <div class="col-lg-3 col-md-4">
+                    <div class="icon-box">
+                        <i class="ri-calendar-todo-line" style="color: #e80368;"></i>
+                        <h3>
+                            <a href="https://docs.google.com/presentation/d/e/2PACX-1vS7-txPXi-l7fNjc0vF3Ew1uPyd5esBmi5CrO96zQaHB_qf1-UJe-AWf0sR4kIZtqoYNNY4tpi42XxV/pub?start=false&loop=false&delayms=3000">Presentation
+                                #1</a></h3>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
+                    <div class="icon-box">
+                        <i class="ri-calendar-todo-line" style="color: #e80368;"></i>
+                        <h3>
+                            <a href="https://docs.google.com/presentation/d/e/2PACX-1vTOWPNO_4n3XIxDZ_re85f4ro3R3Y4yW12OVepXNryd4S6uL7sOR493QibhbGJQLtx1nwyhL70nsWDa/pub?start=false&loop=false&delayms=3000">Presentation
+                                #2</a></h3>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
+                    <div class="icon-box">
+                        <i class="ri-calendar-todo-line" style="color: #e80368;"></i>
+                        <h3><a href="">Presentation #3</a></h3>
+                    </div>
+                </div>
+                <!--                <div class="col-lg-3 col-md-4 mt-4 mt-lg-0">-->
+                <!--                    <div class="icon-box">-->
+                <!--                        <i class="ri-paint-brush-line" style="color: #e361ff;"></i>-->
+                <!--                        <h3><a href="">Magni Dolores</a></h3>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--                <div class="col-lg-3 col-md-4 mt-4">-->
+                <!--                    <div class="icon-box">-->
+                <!--                        <i class="ri-database-2-line" style="color: #47aeff;"></i>-->
+                <!--                        <h3><a href="">Nemo Enim</a></h3>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--                <div class="col-lg-3 col-md-4 mt-4">-->
+                <!--                    <div class="icon-box">-->
+                <!--                        <i class="ri-gradienter-line" style="color: #ffa76e;"></i>-->
+                <!--                        <h3><a href="">Eiusmod Tempor</a></h3>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
+                    <div class="icon-box">
+                        <i class="ri-file-list-3-line" style="color: #11dbcf;"></i>
+                        <h3><a href="">Research Paper</a></h3>
+                    </div>
+                </div>
+                <!--                <div class="col-lg-3 col-md-4 mt-4">-->
+                <!--                    <div class="icon-box">-->
+                <!--                        <i class="ri-price-tag-2-line" style="color: #4233ff;"></i>-->
+                <!--                        <h3><a href="">Pira Neve</a></h3>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--                <div class="col-lg-3 col-md-4 mt-4">-->
+                <!--                    <div class="icon-box">-->
+                <!--                        <i class="ri-anchor-line" style="color: #b2904f;"></i>-->
+                <!--                        <h3><a href="">Dirada Pack</a></h3>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--                <div class="col-lg-3 col-md-4 mt-4">-->
+                <!--                    <div class="icon-box">-->
+                <!--                        <i class="ri-disc-line" style="color: #b20969;"></i>-->
+                <!--                        <h3><a href="">Moton Ideal</a></h3>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--                <div class="col-lg-3 col-md-4 mt-4">-->
+                <!--                    <div class="icon-box">-->
+                <!--                        <i class="ri-base-station-line" style="color: #ff5828;"></i>-->
+                <!--                        <h3><a href="">Verdo Park</a></h3>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--                <div class="col-lg-3 col-md-4 mt-4">-->
+                <!--                    <div class="icon-box">-->
+                <!--                        <i class="ri-fingerprint-line" style="color: #29cc61;"></i>-->
+                <!--                        <h3><a href="">Flavor Nivelanda</a></h3>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+            </div>
+
+        </div>
+    </section><!-- End Features Section -->
 
     <!-- ======= F.A.Q Section ======= -->
-    <section id="faq" class="faq">
+    <section id="faq" class="faq section-bg">
         <div class="container">
 
             <div class="section-title" data-aos="fade-up">
@@ -503,266 +646,69 @@
                         identifiers from .
                     </p>
                 </div>
-            </div><!-- End F.A.Q Item-->
+            </div>
+            <!-- End F.A.Q Item-->
 
-<!--            <div class="row faq-item d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">-->
-<!--                <div class="col-lg-5">-->
-<!--                    <i class="ri-question-line"></i>-->
-<!--                    <h4>Feugiat scelerisque varius morbi enim nunc faucibus a pellentesque?</h4>-->
-<!--                </div>-->
-<!--                <div class="col-lg-7">-->
-<!--                    <p>-->
-<!--                        Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit-->
-<!--                        laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est-->
-<!--                        pellentesque elit ullamcorper dignissim.-->
-<!--                    </p>-->
-<!--                </div>-->
-<!--            </div>&lt;!&ndash; End F.A.Q Item&ndash;&gt;-->
+            <!--            <div class="row faq-item d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">-->
+            <!--                <div class="col-lg-5">-->
+            <!--                    <i class="ri-question-line"></i>-->
+            <!--                    <h4>Feugiat scelerisque varius morbi enim nunc faucibus a pellentesque?</h4>-->
+            <!--                </div>-->
+            <!--                <div class="col-lg-7">-->
+            <!--                    <p>-->
+            <!--                        Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit-->
+            <!--                        laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est-->
+            <!--                        pellentesque elit ullamcorper dignissim.-->
+            <!--                    </p>-->
+            <!--                </div>-->
+            <!--            </div>&lt;!&ndash; End F.A.Q Item&ndash;&gt;-->
 
-<!--            <div class="row faq-item d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">-->
-<!--                <div class="col-lg-5">-->
-<!--                    <i class="ri-question-line"></i>-->
-<!--                    <h4>Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi?</h4>-->
-<!--                </div>-->
-<!--                <div class="col-lg-7">-->
-<!--                    <p>-->
-<!--                        Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar-->
-<!--                        elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus-->
-<!--                        pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus.-->
-<!--                    </p>-->
-<!--                </div>-->
-<!--            </div>&lt;!&ndash; End F.A.Q Item&ndash;&gt;-->
+            <!--            <div class="row faq-item d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">-->
+            <!--                <div class="col-lg-5">-->
+            <!--                    <i class="ri-question-line"></i>-->
+            <!--                    <h4>Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi?</h4>-->
+            <!--                </div>-->
+            <!--                <div class="col-lg-7">-->
+            <!--                    <p>-->
+            <!--                        Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar-->
+            <!--                        elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus-->
+            <!--                        pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus.-->
+            <!--                    </p>-->
+            <!--                </div>-->
+            <!--            </div>&lt;!&ndash; End F.A.Q Item&ndash;&gt;-->
 
-<!--            <div class="row faq-item d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">-->
-<!--                <div class="col-lg-5">-->
-<!--                    <i class="ri-question-line"></i>-->
-<!--                    <h4>Ac odio tempor orci dapibus. Aliquam eleifend mi in nulla?</h4>-->
-<!--                </div>-->
-<!--                <div class="col-lg-7">-->
-<!--                    <p>-->
-<!--                        Aperiam itaque sit optio et deleniti eos nihil quidem cumque. Voluptas dolorum accusantium sunt-->
-<!--                        sit enim. Provident consequuntur quam aut reiciendis qui rerum dolorem sit odio. Repellat-->
-<!--                        assumenda soluta sunt pariatur error doloribus fuga.-->
-<!--                    </p>-->
-<!--                </div>-->
-<!--            </div>&lt;!&ndash; End F.A.Q Item&ndash;&gt;-->
+            <!--            <div class="row faq-item d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">-->
+            <!--                <div class="col-lg-5">-->
+            <!--                    <i class="ri-question-line"></i>-->
+            <!--                    <h4>Ac odio tempor orci dapibus. Aliquam eleifend mi in nulla?</h4>-->
+            <!--                </div>-->
+            <!--                <div class="col-lg-7">-->
+            <!--                    <p>-->
+            <!--                        Aperiam itaque sit optio et deleniti eos nihil quidem cumque. Voluptas dolorum accusantium sunt-->
+            <!--                        sit enim. Provident consequuntur quam aut reiciendis qui rerum dolorem sit odio. Repellat-->
+            <!--                        assumenda soluta sunt pariatur error doloribus fuga.-->
+            <!--                    </p>-->
+            <!--                </div>-->
+            <!--            </div>&lt;!&ndash; End F.A.Q Item&ndash;&gt;-->
 
-<!--            <div class="row faq-item d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="500">-->
-<!--                <div class="col-lg-5">-->
-<!--                    <i class="ri-question-line"></i>-->
-<!--                    <h4>Tempus quam pellentesque nec nam aliquam sem et tortor consequat?</h4>-->
-<!--                </div>-->
-<!--                <div class="col-lg-7">-->
-<!--                    <p>-->
-<!--                        Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante-->
-<!--                        in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum-->
-<!--                        est. Purus gravida quis blandit turpis cursus in-->
-<!--                    </p>-->
-<!--                </div>-->
-<!--            </div>&lt;!&ndash; End F.A.Q Item&ndash;&gt;-->
+            <!--            <div class="row faq-item d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="500">-->
+            <!--                <div class="col-lg-5">-->
+            <!--                    <i class="ri-question-line"></i>-->
+            <!--                    <h4>Tempus quam pellentesque nec nam aliquam sem et tortor consequat?</h4>-->
+            <!--                </div>-->
+            <!--                <div class="col-lg-7">-->
+            <!--                    <p>-->
+            <!--                        Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante-->
+            <!--                        in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum-->
+            <!--                        est. Purus gravida quis blandit turpis cursus in-->
+            <!--                    </p>-->
+            <!--                </div>-->
+            <!--            </div>&lt;!&ndash; End F.A.Q Item&ndash;&gt;-->
 
         </div>
     </section><!-- End F.A.Q Section -->
 
-    <!-- ======= Features Section ======= -->
-    <section id="resources" class="features section-bg">
-        <div class="container">
-
-            <div class="section-title" data-aos="fade-up">
-                <h2>Resources</h2>
-<!--                <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem</p>-->
-            </div>
-
-            <div class="row" data-aos="fade-up" data-aos-delay="300">
-<!--                <div class="col-lg-3 col-md-4">-->
-<!--                    <div class="icon-box">-->
-<!--                        <i class="ri-store-line" style="color: #ffbb2c;"></i>-->
-<!--                        <h3><a href="">Lorem Ipsum</a></h3>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-lg-3 col-md-4 mt-4 mt-md-0">-->
-<!--                    <div class="icon-box">-->
-<!--                        <i class="ri-bar-chart-box-line" style="color: #5578ff;"></i>-->
-<!--                        <h3><a href="">Dolor Sitema</a></h3>-->
-<!--                    </div>-->
-<!--                </div>-->
-                <div class="col-lg-3 col-md-4">
-                    <div class="icon-box">
-                        <i class="ri-calendar-todo-line" style="color: #e80368;"></i>
-                        <h3><a href="https://docs.google.com/presentation/d/e/2PACX-1vS7-txPXi-l7fNjc0vF3Ew1uPyd5esBmi5CrO96zQaHB_qf1-UJe-AWf0sR4kIZtqoYNNY4tpi42XxV/pub?start=false&loop=false&delayms=3000">Presentation #1</a></h3>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
-                    <div class="icon-box">
-                        <i class="ri-calendar-todo-line" style="color: #e80368;"></i>
-                        <h3><a href="https://docs.google.com/presentation/d/e/2PACX-1vTOWPNO_4n3XIxDZ_re85f4ro3R3Y4yW12OVepXNryd4S6uL7sOR493QibhbGJQLtx1nwyhL70nsWDa/pub?start=false&loop=false&delayms=3000">Presentation #2</a></h3>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
-                    <div class="icon-box">
-                        <i class="ri-calendar-todo-line" style="color: #e80368;"></i>
-                        <h3><a href="">Presentation #3</a></h3>
-                    </div>
-                </div>
-<!--                <div class="col-lg-3 col-md-4 mt-4 mt-lg-0">-->
-<!--                    <div class="icon-box">-->
-<!--                        <i class="ri-paint-brush-line" style="color: #e361ff;"></i>-->
-<!--                        <h3><a href="">Magni Dolores</a></h3>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-lg-3 col-md-4 mt-4">-->
-<!--                    <div class="icon-box">-->
-<!--                        <i class="ri-database-2-line" style="color: #47aeff;"></i>-->
-<!--                        <h3><a href="">Nemo Enim</a></h3>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-lg-3 col-md-4 mt-4">-->
-<!--                    <div class="icon-box">-->
-<!--                        <i class="ri-gradienter-line" style="color: #ffa76e;"></i>-->
-<!--                        <h3><a href="">Eiusmod Tempor</a></h3>-->
-<!--                    </div>-->
-<!--                </div>-->
-                <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
-                    <div class="icon-box">
-                        <i class="ri-file-list-3-line" style="color: #11dbcf;"></i>
-                        <h3><a href="">Research Paper</a></h3>
-                    </div>
-                </div>
-<!--                <div class="col-lg-3 col-md-4 mt-4">-->
-<!--                    <div class="icon-box">-->
-<!--                        <i class="ri-price-tag-2-line" style="color: #4233ff;"></i>-->
-<!--                        <h3><a href="">Pira Neve</a></h3>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-lg-3 col-md-4 mt-4">-->
-<!--                    <div class="icon-box">-->
-<!--                        <i class="ri-anchor-line" style="color: #b2904f;"></i>-->
-<!--                        <h3><a href="">Dirada Pack</a></h3>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-lg-3 col-md-4 mt-4">-->
-<!--                    <div class="icon-box">-->
-<!--                        <i class="ri-disc-line" style="color: #b20969;"></i>-->
-<!--                        <h3><a href="">Moton Ideal</a></h3>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-lg-3 col-md-4 mt-4">-->
-<!--                    <div class="icon-box">-->
-<!--                        <i class="ri-base-station-line" style="color: #ff5828;"></i>-->
-<!--                        <h3><a href="">Verdo Park</a></h3>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-lg-3 col-md-4 mt-4">-->
-<!--                    <div class="icon-box">-->
-<!--                        <i class="ri-fingerprint-line" style="color: #29cc61;"></i>-->
-<!--                        <h3><a href="">Flavor Nivelanda</a></h3>-->
-<!--                    </div>-->
-<!--                </div>-->
-            </div>
-
-        </div>
-    </section><!-- End Features Section -->
-
-    <!--    &lt;!&ndash; ======= Contact Section ======= &ndash;&gt;-->
-    <!--    <section id="contact" class="contact">-->
-    <!--      <div class="container">-->
-
-    <!--        <div class="section-title" data-aos="fade-up">-->
-    <!--          <h2>Contact Us</h2>-->
-    <!--        </div>-->
-
-    <!--        <div class="row">-->
-
-    <!--          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">-->
-    <!--            <div class="contact-about">-->
-    <!--              <h3>Vesperr</h3>-->
-    <!--              <p>Cras fermentum odio eu feugiat. Justo eget magna fermentum iaculis eu non diam phasellus. Scelerisque felis imperdiet proin fermentum leo. Amet volutpat consequat mauris nunc congue.</p>-->
-    <!--              <div class="social-links">-->
-    <!--                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>-->
-    <!--                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>-->
-    <!--                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>-->
-    <!--                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>-->
-    <!--              </div>-->
-    <!--            </div>-->
-    <!--          </div>-->
-
-    <!--          <div class="col-lg-3 col-md-6 mt-4 mt-md-0" data-aos="fade-up" data-aos-delay="200">-->
-    <!--            <div class="info">-->
-    <!--              <div>-->
-    <!--                <i class="ri-map-pin-line"></i>-->
-    <!--                <p>A108 Adam Street<br>New York, NY 535022</p>-->
-    <!--              </div>-->
-
-    <!--              <div>-->
-    <!--                <i class="ri-mail-send-line"></i>-->
-    <!--                <p>info@example.com</p>-->
-    <!--              </div>-->
-
-    <!--              <div>-->
-    <!--                <i class="ri-phone-line"></i>-->
-    <!--                <p>+1 5589 55488 55s</p>-->
-    <!--              </div>-->
-
-    <!--            </div>-->
-    <!--          </div>-->
-
-    <!--          <div class="col-lg-5 col-md-12" data-aos="fade-up" data-aos-delay="300">-->
-    <!--            <form action="forms/contact.php" method="post" role="form" class="php-email-form">-->
-    <!--              <div class="form-group">-->
-    <!--                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>-->
-    <!--              </div>-->
-    <!--              <div class="form-group">-->
-    <!--                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>-->
-    <!--              </div>-->
-    <!--              <div class="form-group">-->
-    <!--                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>-->
-    <!--              </div>-->
-    <!--              <div class="form-group">-->
-    <!--                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>-->
-    <!--              </div>-->
-    <!--              <div class="my-3">-->
-    <!--                <div class="loading">Loading</div>-->
-    <!--                <div class="error-message"></div>-->
-    <!--                <div class="sent-message">Your message has been sent. Thank you!</div>-->
-    <!--              </div>-->
-    <!--              <div class="text-center"><button type="submit">Send Message</button></div>-->
-    <!--            </form>-->
-    <!--          </div>-->
-
-    <!--        </div>-->
-
-    <!--      </div>-->
-    <!--    </section>&lt;!&ndash; End Contact Section &ndash;&gt;-->
-
 </main><!-- End #main -->
-
-<!-- ======= Footer ======= -->
-<!--  <footer id="footer">-->
-<!--    <div class="container">-->
-<!--      <div class="row d-flex align-items-center">-->
-<!--        <div class="col-lg-6 text-lg-left text-center">-->
-<!--          <div class="copyright">-->
-<!--          <strong>BG-Predict</strong>-->
-<!--          </div>-->
-<!--          <div class="credits">-->
-<!--            &lt;!&ndash; All the links in the footer should remain intact. &ndash;&gt;-->
-<!--            &lt;!&ndash; You can delete the links only if you purchased the pro version. &ndash;&gt;-->
-<!--            &lt;!&ndash; Licensing information: https://bootstrapmade.com/license/ &ndash;&gt;-->
-<!--            &lt;!&ndash; Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/vesperr-free-bootstrap-template/ &ndash;&gt;-->
-<!--            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="col-lg-6">-->
-<!--          <nav class="footer-links text-lg-right text-center pt-2 pt-lg-0">-->
-<!--            <a href="#intro" class="scrollto">Home</a>-->
-<!--            <a href="#about" class="scrollto">About</a>-->
-<!--            <a href="#">Privacy Policy</a>-->
-<!--            <a href="#">Terms of Use</a>-->
-<!--          </nav>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </footer>&lt;!&ndash; End Footer &ndash;&gt;-->
 
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
         class="bi bi-arrow-up-short"></i></a>
